@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantTech Company — Point-in-Time Data & Research for Systematic Macro</title>
+<meta name="description" content="QuantTech Company builds point-in-time factor and alternative-data libraries, machine-learning systematic models, and leakage-safe research tooling for systematic macro and futures markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0e13;--ink-2:#11151c;--line:rgba(233,228,214,0.12);
+    --cream:#e9e4d6;--cream-dim:#9a978d;--signal:#c8f04a;--signal-dim:#8ba63a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--cream);font-family:'IBM Plex Mono',monospace;font-weight:300;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,black 10%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0%,black 10%,transparent 70%);opacity:.5}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 32px}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);background:rgba(11,14,19,.6);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:'Fraunces',serif;font-size:20px;font-weight:500;letter-spacing:-.01em}
+  .logo b{color:var(--signal);font-weight:500}
+  .nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .nav-links a{color:var(--cream-dim);text-decoration:none;transition:color .25s}
+  .nav-links a:hover{color:var(--cream)}
+  @media(max-width:640px){.nav-links{display:none}}
+
+  header{min-height:100vh;display:flex;align-items:center;padding-top:64px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal-dim);display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .eyebrow::before{content:"";width:42px;height:1px;background:var(--signal-dim)}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(38px,7vw,80px);line-height:1.04;letter-spacing:-.025em;max-width:16ch}
+  h1 em{font-style:italic;color:var(--signal)}
+  .lede{margin-top:40px;max-width:56ch;color:var(--cream-dim);font-size:16px;line-height:1.85}
+  .meta-row{margin-top:64px;display:flex;flex-wrap:wrap;gap:48px;font-size:12px;letter-spacing:.05em}
+  .meta-row .k{color:var(--cream-dim);text-transform:uppercase;font-size:11px;letter-spacing:.14em;margin-bottom:6px}
+  .meta-row .v{font-family:'Fraunces',serif;font-size:18px}
+
+  section{padding:120px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;gap:18px;align-items:baseline;margin-bottom:56px}
+  .sec-num{color:var(--signal);font-size:13px;letter-spacing:.1em}
+  .sec-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:36px}}
+  .about-grid p{color:var(--cream-dim);font-size:15px;line-height:1.9;margin-bottom:20px}
+  .about-grid p strong{color:var(--cream);font-weight:400}
+
+  .thesis{padding:110px 0;border-top:1px solid var(--line)}
+  .thesis blockquote{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(26px,4.4vw,46px);line-height:1.25;letter-spacing:-.02em;max-width:24ch;color:var(--cream)}
+  .thesis blockquote span{color:var(--signal)}
+  .thesis .attr{margin-top:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim)}
+
+  /* approach */
+  .approach-lead{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,2.6vw,28px);line-height:1.45;letter-spacing:-.01em;max-width:34ch;margin-bottom:56px;color:var(--cream)}
+  .approach-lead b{color:var(--signal);font-weight:400}
+  .approach-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  @media(max-width:760px){.approach-cols{grid-template-columns:1fr;gap:34px}}
+  .acol h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .acol h4::before{content:"";width:8px;height:8px;background:var(--signal);display:inline-block;transform:rotate(45deg)}
+  .acol p{color:var(--cream-dim);font-size:14px;line-height:1.85}
+
+  .products{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .product{background:var(--ink);padding:38px 34px;display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;transition:background .3s}
+  .product:hover{background:var(--ink-2)}
+  .product .idx{font-family:'Fraunces',serif;font-size:30px;color:var(--signal);line-height:1}
+  .product h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin-bottom:10px;letter-spacing:-.01em}
+  .product p{color:var(--cream-dim);font-size:14px;line-height:1.8}
+  .product .tag{display:inline-block;margin-bottom:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal-dim);border:1px solid var(--line);padding:3px 9px;border-radius:2px}
+  @media(max-width:560px){.product{grid-template-columns:1fr;gap:12px}}
+
+  .sources{margin-top:48px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .sources .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);margin-right:8px}
+  .chip{font-size:12px;border:1px solid var(--line);padding:6px 13px;border-radius:2px;color:var(--cream)}
+  .chip.hot{border-color:var(--signal-dim);color:var(--signal)}
+
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+  .big-mail{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(26px,5vw,48px);letter-spacing:-.02em;color:var(--cream);text-decoration:none;display:inline-block;line-height:1.1;border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
+  .big-mail:hover{color:var(--signal);border-color:var(--signal)}
+  .contact-detail .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:6px}
+  .contact-detail .v{font-size:15px;margin-bottom:26px}
+  .contact-detail a{color:var(--cream);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact-detail a:hover{color:var(--signal)}
+
+  footer{border-top:1px solid var(--line);padding:40px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--cream-dim);letter-spacing:.04em}
+
+  .reveal{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.31s}.d4{animation-delay:.44s}
+  .io{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .io.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Quant<b>Tech</b> Company</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#approach">Approach</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow reveal d1">Quantitative Research &amp; Alternative Data</div>
+    <h1 class="reveal d2">The point-in-time data backbone for <em>systematic</em> macro &amp; futures markets.</h1>
+    <p class="lede reveal d3">
+      QuantTech Company builds the data infrastructure, machine-learning models, and research tooling
+      that systematic trading firms need but rarely build cost-effectively in-house. We are a
+      data-and-research vendor — not an asset manager. We sell rigorous inputs; our clients form
+      their own views and execute their own trades.
+    </p>
+    <div class="meta-row reveal d4">
+      <div><div class="k">Headquarters</div><div class="v">Medford, Massachusetts</div></div>
+      <div><div class="k">Founded</div><div class="v">2026</div></div>
+      <div><div class="k">Focus</div><div class="v">Systematic Macro &amp; Futures</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head io"><span class="sec-num">01</span><h2 class="sec-title">About us</h2></div>
+    <div class="about-grid io">
+      <div>
+        <p><strong>QuantTech Company is built by practitioners.</strong> Our work draws on years of
+        buy-side quantitative research owning end-to-end systematic macro strategies across
+        equity-index, bond, and commodity futures and FX forwards — the full lifecycle of signal
+        development, data engineering, backtesting, portfolio construction, and risk attribution.</p>
+        <p>Our mission is simple: make institutional-grade, <strong>point-in-time</strong>
+        systematic-macro data, factors, and research available as a reliable subscription input —
+        so any systematic firm can research and validate strategies on a leakage-safe foundation
+        without building a data factory from scratch.</p>
+      </div>
+      <div>
+        <p>We operate as an independent <strong>research and data vendor</strong> — we do not
+        trade, manage capital, or give investment advice. That keeps our incentives aligned with
+        our clients and our position clean: we deliver data, models, and tooling; clients make
+        and execute every investment decision themselves.</p>
+        <p>The edge in modern systematic investing is no longer the model alone — it is the speed
+        and integrity of the data feeding it, and the rigor of the methods applied to it.
+        <strong>That is where we compete.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="thesis">
+  <div class="wrap io">
+    <blockquote>The infrastructure we build to run our own research <span>is the product.</span></blockquote>
+    <div class="attr">— QuantTech Company core thesis</div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head io"><span class="sec-num">02</span><h2 class="sec-title">Our approach</h2></div>
+    <p class="approach-lead io">
+      Most CTA and GTAA offerings still rely on simple linear, rules-based signals. We apply
+      <b>modern machine learning and deep learning</b> to extract richer, non-linear structure
+      from market and alternative data — disciplined at every step by financial-time-series-aware
+      validation.
+    </p>
+    <div class="approach-cols io">
+      <div class="acol">
+        <h4>Non-linear signal extraction</h4>
+        <p>Gradient-boosted trees, random forests, and deep-learning architectures applied to
+        liquid futures and alternative data, with domain-specific feature engineering — surfacing
+        predictive structure that linear models miss. Where incumbents stop at linear factors,
+        we begin.</p>
+      </div>
+      <div class="acol">
+        <h4>Validation-first by construction</h4>
+        <p>ML and AI accelerate hypothesis generation — and amplify overfitting. Every model
+        passes the same leakage-safe gates we apply internally: combinatorial purged
+        cross-validation, the Deflated Sharpe Ratio, stationary block bootstrap, and
+        human-in-the-loop review. Powerful methods, honestly tested.</p>
+      </div>
+    </div>
+    <div class="sources io">
+      <span class="lbl">Methods &amp; stack</span>
+      <span class="chip hot">Python</span>
+      <span class="chip hot">LightGBM</span>
+      <span class="chip hot">XGBoost</span>
+      <span class="chip hot">Random Forests</span>
+      <span class="chip hot">Deep Learning</span>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head io"><span class="sec-num">03</span><h2 class="sec-title">What we build</h2></div>
+    <div class="products io">
+      <div class="product">
+        <div class="idx">01</div>
+        <div>
+          <span class="tag">Beachhead</span>
+          <h3>Point-in-Time Factor &amp; Alternative-Data Library</h3>
+          <p>A curated, point-in-time factor library for futures and macro markets — positioning,
+          macroeconomic, weather, and commodity supply-and-demand signals — each validated for
+          statistical significance and delivered with full diagnostics. No silent look-ahead bias.</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="idx">02</div>
+        <div>
+          <span class="tag">Subscription</span>
+          <h3>ML-Driven Systematic Model &amp; Signal Subscriptions</h3>
+          <p>Productized CTA- and GTAA-style outputs — momentum, trend-following, carry, and
+          cross-asset tactical exposures — built with modern machine learning and deep learning
+          rather than simple linear models, and delivered as factor exposures and analytics.
+          Clients overlay their own sizing, execution, and risk.</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="idx">03</div>
+        <div>
+          <span class="tag">Tooling</span>
+          <h3>Leakage-Safe Backtesting &amp; Validation</h3>
+          <p>A packaged Python framework for systematic backtesting with performance attribution,
+          risk metrics, and built-in robustness testing — combinatorial purged cross-validation,
+          the Deflated Sharpe Ratio, and stationary block bootstrap — so models are validated
+          under institutional-grade overfitting and look-ahead safeguards.</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="idx">04</div>
+        <div>
+          <span class="tag">AI-native layer</span>
+          <h3>Research Copilot</h3>
+          <p>An LLM-driven, natural-language layer that runs across every product — query factors,
+          construct signals from validated components, and run leakage-safe backtests without
+          writing integration code. A static data subscription becomes an interactive research
+          environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sources io">
+      <span class="lbl">Built on public, point-in-time sources</span>
+      <span class="chip">CFTC COT</span>
+      <span class="chip">FRED</span>
+      <span class="chip">NCEI</span>
+      <span class="chip">USDA WASDE</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head io"><span class="sec-num">04</span><h2 class="sec-title">Get in touch</h2></div>
+    <div class="contact-grid io">
+      <div>
+        <p style="color:var(--cream-dim);max-width:44ch;margin-bottom:28px;line-height:1.9">
+          Building systematic macro or futures strategies and need a research-and-data partner?
+          Tell us what you're working on — we lead with bespoke engagements and scale into
+          subscriptions.
+        </p>
+        <a class="big-mail" href="mailto:chencui@quanttechcompany.com">chencui@quanttechcompany.com</a>
+      </div>
+      <div>
+        <div class="contact-detail">
+          <div class="k">General &amp; Engagements</div>
+          <div class="v"><a href="mailto:chencui@quanttechcompany.com">chencui@quanttechcompany.com</a></div>
+          <div class="k">Location</div>
+          <div class="v">Boston, Massachusetts, USA</div>
+          <div class="k">Web</div>
+          <div class="v"><a href="https://quanttechcompany.com">quanttechcompany.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> QuantTech Company. All rights reserved.</span>
+    <span>Quantitative Research &amp; Alternative Data — Massachusetts, USA</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.io').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
